@@ -38,56 +38,58 @@ There are no differences in this section
 
 Replace the text inside of `app/templates/application.hbs` with the following:
 
-    <section id="todoapp">
-      <header id="header">
-        <h1>todos</h1>
-        <input type="text" id="new-todo" placeholder="What needs to be done?" />
-      </header>
+{% highlight html %}
+<section id="todoapp">
+  <header id="header">
+    <h1>todos</h1>
+    <input type="text" id="new-todo" placeholder="What needs to be done?" />
+  </header>
 
-      <section id="main">
-        <ul id="todo-list">
-          <li class="completed">
-            <input type="checkbox" class="toggle">
-            <label>Learn Ember.js</label><button class="destroy"></button>
-          </li>
-          <li>
-            <input type="checkbox" class="toggle">
-            <label>...</label><button class="destroy"></button>
-          </li>
-          <li>
-            <input type="checkbox" class="toggle">
-            <label>Profit!</label><button class="destroy"></button>
-          </li>
-        </ul>
+  <section id="main">
+    <ul id="todo-list">
+      <li class="completed">
+        <input type="checkbox" class="toggle">
+        <label>Learn Ember.js</label><button class="destroy"></button>
+      </li>
+      <li>
+        <input type="checkbox" class="toggle">
+        <label>...</label><button class="destroy"></button>
+      </li>
+      <li>
+        <input type="checkbox" class="toggle">
+        <label>Profit!</label><button class="destroy"></button>
+      </li>
+    </ul>
 
-        <input type="checkbox" id="toggle-all">
-      </section>
+    <input type="checkbox" id="toggle-all">
+  </section>
 
-      <footer id="footer">
-        <span id="todo-count">
-          <strong>2</strong> todos left
-        </span>
-        <ul id="filters">
-          <li>
-            <a href="all" class="selected">All</a>
-          </li>
-          <li>
-            <a href="active">Active</a>
-          </li>
-          <li>
-            <a href="completed">Completed</a>
-          </li>
-        </ul>
+  <footer id="footer">
+    <span id="todo-count">
+      <strong>2</strong> todos left
+    </span>
+    <ul id="filters">
+      <li>
+        <a href="all" class="selected">All</a>
+      </li>
+      <li>
+        <a href="active">Active</a>
+      </li>
+      <li>
+        <a href="completed">Completed</a>
+      </li>
+    </ul>
 
-        <button id="clear-completed">
-          Clear completed (1)
-        </button>
-      </footer>
-    </section>
+    <button id="clear-completed">
+      Clear completed (1)
+    </button>
+  </footer>
+</section>
 
-    <footer id="info">
-      <p>Double-click to edit a todo</p>
-    </footer>
+<footer id="info">
+  <p>Double-click to edit a todo</p>
+</footer>
+{% endhighlight %}
 
 Replace the contents of `app/styles/app.css` with this [stylesheet](http://emberjs.com.s3.amazonaws.com/getting-started/style.css).
 
@@ -101,34 +103,40 @@ We've already obtained Ember.js and dependencies! Move on to the next section.
 
 Inside `app/router.js` file add this line to the `Router.map` body:
 
-    this.resource('todos', { path: '/' });
+{% highlight js %}
+this.resource('todos', { path: '/' });
+{% endhighlight %}
 
 The `app/router.js` file should look like this now:
 
-    import Ember from 'ember';
+{% highlight  js %}
+import Ember from 'ember';
 
-    var Router = Ember.Router.extend({
-      location: TodosENV.locationType
-    });
+var Router = Ember.Router.extend({
+  location: TodosENV.locationType
+});
 
-    Router.map(function() {
-      this.resource('todos', { path: '/' });
-    });
+Router.map(function() {
+  this.resource('todos', { path: '/' });
+});
 
-    export default Router;
+export default Router;
+{% endhighlight %}
 
 Now copy the entire contents of the `app/templates/applicaiton.hbs` file into a new file called `app/templates/todos.hbs`.
 
 Then replace the entire contents of the `app/templates/application.hbs` file with:
 
-    {{outlet}}
-
+{% highlight js %}
+/\{\{/outlet/\}\}/
+{% endhighlight %}
 Now go back to your web browser and make sure everything still loaded okay.
 
 ## Modeling Data
 
 Before we create our model we need to edit `Brocfile.js` so that ember-data will work:
 
+{% highlight js %}
     app.import({
       development: 'vendor/ember-data/ember-data.js',
       production:  'vendor/ember-data/ember-data.prod.js'
@@ -137,9 +145,11 @@ Before we create our model we need to edit `Brocfile.js` so that ember-data will
         'default'
       ]
     });
+{% endhighlight %}
 
 Create a file at `js/models/todo.js` and put the following code inside:
 
+{% highlight js %}
     import DS from 'ember-data';
 
     var Todo = DS.Model.extend({
@@ -148,200 +158,221 @@ Create a file at `js/models/todo.js` and put the following code inside:
     });
 
     export default Todo;
+{% endhighlight %}
 
 ## Using Fixtures
 
 
 To enable fixtures create the folder `app/adapters` and then create the file: `app/adapters/application.js` and place the following code inside:
 
-    import DS from 'ember-data';
+{% highlight js %}
+import DS from 'ember-data';
 
-    export default DS.FixtureAdapter.extend();
+export default DS.FixtureAdapter.extend();
+{% endhighlight %}
 
 Now go back to our model `app/models/todo.js` and the fixture to it so that the file now looks like:
 
-    import DS from 'ember-data';
+{% highlight js %}
+import DS from 'ember-data';
 
-    var Todo = DS.Model.extend({
-      title: DS.attr('string'),
-      isCompleted: DS.attr('boolean')
-    });
+var Todo = DS.Model.extend({
+  title: DS.attr('string'),
+  isCompleted: DS.attr('boolean')
+});
 
-    Todo.reopenClass({
-      FIXTURES: [
-        {
-          id: "1",
-          title: 'install ember-cli',
-          isCompleted: true
-        }, {
-          id: "2",
-          title: 'install additional dependencies',
-          isCompleted: true
-        }, {
-          id: "3",
-          title: 'develop amazing things',
-          isCompleted: false
-        }
-    ]});
+Todo.reopenClass({
+  FIXTURES: [
+    {
+      id: "1",
+      title: 'install ember-cli',
+      isCompleted: true
+    }, {
+      id: "2",
+      title: 'install additional dependencies',
+      isCompleted: true
+    }, {
+      id: "3",
+      title: 'develop amazing things',
+      isCompleted: false
+    }
+]});
 
-    export default Todo;
-
+export default Todo;
+{% endhighlight %}
 
 ## Displaying Model Data
 
 Create a file called `app/routes/todos.js` and place the following code inside:
 
-    import Ember from 'ember';
+{% highlight js %}
+import Ember from 'ember';
 
-    export default Ember.Route.extend({
-      model: function() {
-        return this.store.find('todo');
-      }
-    });
+export default Ember.Route.extend({
+  model: function() {
+    return this.store.find('todo');
+  }
+});
+{% endhighlight %}
 
 Now we need to add some handlebar code to our `app/templates/todos.hbs` template so that it can dynamically load the contents of our fixture.
 
-    <!--- ... additional lines truncated for brevity ... -->
-    <ul id="todo-list">
-      {{#each}}
-        <li>
-          <input type="checkbox" class="toggle">
-          <label>{{title}}</label>
-          <button class="destroy"></button>
-        </li>
-      {{/each}}
-    </ul>
-    <!--- ... additional lines truncated for brevity ... -->
+{% highlight html %}
+<!--- ... additional lines truncated for brevity ... -->
+<ul id="todo-list">
+  /\{\{/#each/\}\}/
+    <li>
+      <input type="checkbox" class="toggle">
+      <label>/\{\{/title/\}\}/</label>
+      <button class="destroy"></button>
+    </li>
+  /\{\{//each/\}\}/
+</ul>
+<!--- ... additional lines truncated for brevity ... -->
+{% endhighlight %}
 
 ## Displaying a Model's Complete State
 
 Update the `<li>` tag in `app/templates/todos.hbs`:
 
-    <!--- ... additional lines truncated for brevity ... -->
-    <li {{bind-attr class="isCompleted:completed"}}>
-      <input type="checkbox" class="toggle">
-      <label>{{title}}</label>
-      <button class="destroy"></button>
-    </li>
-    <!--- ... additional lines truncated for brevity ... -->
+{% highlight html %}
+<!--- ... additional lines truncated for brevity ... -->
+<li /\{\{/bind-attr class="isCompleted:completed"/\}\}/>
+  <input type="checkbox" class="toggle">
+  <label>/\{\{/title/\}\}/</label>
+  <button class="destroy"></button>
+</li>
+<!--- ... additional lines truncated for brevity ... -->
+{% endhighlight %}
 
 ## Creating a New Model Instance
 
-At the top of `app/templates/todos.hbs` replace the new todo `<input>` with an `{{input}}` helper:
+At the top of `app/templates/todos.hbs` replace the new todo `<input>` with an `/\{\{/input/\}\}/` helper:
 
-    <!--- ... additional lines truncated for brevity ... -->
-    <h1>todos</h1>
-    {{input type="text" id="new-todo" placeholder="What needs to be done?"
-              value=newTitle action="createTodo"}}
-    <!--- ... additional lines truncated for brevity ... -->
-
+{% highlight html %}
+<!--- ... additional lines truncated for brevity ... -->
+<h1>todos</h1>
+/\{\{/input type="text" id="new-todo" placeholder="What needs to be done?"
+          value=newTitle action="createTodo"/\}\}/
+<!--- ... additional lines truncated for brevity ... -->
+{% endhighlight %}
 
 Inside of the `app/controllers/` folder create a new file called: `todos.js` and put the following code inside of it:
 
-    import Ember from 'ember';
+{% highlight js %}
+import Ember from 'ember';
 
-    export default Ember.ArrayController.extend({
-      actions: {
-        createTodo: function() {
-          // Get the todo title set by the "New Todo" text field
-          var title = this.get('newTitle');
-          if (!title.trim()) { return; }
+export default Ember.ArrayController.extend({
+  actions: {
+    createTodo: function() {
+      // Get the todo title set by the "New Todo" text field
+      var title = this.get('newTitle');
+      if (!title.trim()) { return; }
 
-          // Create the new Todo Model
-          var todo = this.store.createRecord('todo', {
-            title: title,
-            isCompleted: false
-          });
+      // Create the new Todo Model
+      var todo = this.store.createRecord('todo', {
+        title: title,
+        isCompleted: false
+      });
 
-          // Clear the "New Todo" text field
-          this.set('newTitle', '');
+      // Clear the "New Todo" text field
+      this.set('newTitle', '');
 
-          // Save the new model
-          todo.save();
-        }
-      }
-    });
-
+      // Save the new model
+      todo.save();
+    }
+  }
+});
+{% endhighlight %}
 
 ## Marking a Model as Complete or Incomplete
 
 Inside the `app/templates/todos.hbs` template replace the `<input>` tag for the checkbox with:
 
-    {{#each}}
-      <li {{bind-attr class="isCompleted:completed"}}>
-        {{input type="checkbox" checked=isCompleted class="toggle"}}
-        <label>{{title}}</label>
-        <button class="destroy"></button>
-      </li>
-    {{/each}}
+{% highlight html %}
+/\{\{/#each/\}\}/
+  <li /\{\{/bind-attr class="isCompleted:completed"/\}\}/>
+    /\{\{/input type="checkbox" checked=isCompleted class="toggle"/\}\}/
+    <label>/\{\{/title/\}\}/</label>
+    <button class="destroy"></button>
+  </li>
+/\{\{//each/\}\}/
+{% endhighlight %}
 
 Inside of the `app/controllers/` folder create a new file called: `todo.js`. And place the following code inside:
 
-    import Ember from 'ember';
+{% highlight js %}
+import Ember from 'ember';
 
-    export default Ember.ObjectController.extend({
-      isCompleted: function(key, value){
-        var model = this.get('model');
+export default Ember.ObjectController.extend({
+  isCompleted: function(key, value){
+    var model = this.get('model');
 
-        if (value === undefined) {
-          // property being used as a getter
-          return model.get('isCompleted');
-        } else {
-          // property being used as a setter
-          model.set('isCompleted', value);
-          model.save();
-          return value;
-        }
-      }.property('model.isCompleted')
-    });
-
+    if (value === undefined) {
+      // property being used as a getter
+      return model.get('isCompleted');
+    } else {
+      // property being used as a setter
+      model.set('isCompleted', value);
+      model.save();
+      return value;
+    }
+  }.property('model.isCompleted')
+});
+{% endhighlight %}
 ## Displaying the Number of Incomplete Todos
 
 Update the static count inside the `todo-count` span in the `app/templates/todos.hbs` template:
 
-    <!--- ... additional lines truncated for brevity ... -->
-    <span id="todo-count">
-      <strong>{{remaining}}</strong> {{inflection}} left
-    </span>
-    <!--- ... additional lines truncated for brevity ... -->
+{% highlight html %}
+<!--- ... additional lines truncated for brevity ... -->
+<span id="todo-count">
+  <strong>/\{\{/remaining/\}\}/</strong> /\{\{/inflection/\}\}/ left
+</span>
+<!--- ... additional lines truncated for brevity ... -->
+{% endhighlight %}
 
 Add this to the `app/controllers/todos.js` file:
 
-    // ... additional lines truncated for brevity ...
-    actions: {
-    // ... additional lines truncated for brevity ...
-    },
+{% highlight js %}
+// ... additional lines truncated for brevity ...
+actions: {
+// ... additional lines truncated for brevity ...
+},
 
-    remaining: function() {
-      return this.filterBy('isCompleted', false).get('length');
-    }.property('@each.isCompleted'),
+remaining: function() {
+  return this.filterBy('isCompleted', false).get('length');
+}.property('@each.isCompleted'),
 
-    inflection: function() {
-      var remaining = this.get('remaining');
-      return remaining === 1 ? 'todo' : 'todos';
-    }.property('remaining')
-    // ... additional lines truncated for brevity ...
-
+inflection: function() {
+  var remaining = this.get('remaining');
+  return remaining === 1 ? 'todo' : 'todos';
+}.property('remaining')
+// ... additional lines truncated for brevity ...
+{% endhighlight %}
 ## Toggling between Showing and Editing States
 
 Update `app/templates/todos.hbs` with the following code to enable toggling in and out of edit mode:
 
+{% highlight html %}
     <!--- ... additional lines truncated for brevity ... -->
-    {{#each itemController="todo"}}
-      <li {{bind-attr class="isCompleted:completed isEditing:editing"}}>
-        {{#if isEditing}}
+    /\{\{/#each itemController="todo"/\}\}/
+      <li /\{\{/bind-attr class="isCompleted:completed isEditing:editing"/\}\}/>
+        /\{\{/#if isEditing/\}\}/
           <input class="edit">
-        {{else}}
-          {{input type="checkbox" checked=isCompleted class="toggle"}}
-          <label {{action "editTodo" on="doubleClick"}}>{{title}}</label>
+        /\{\{/else/\}\}/
+          /\{\{/input type="checkbox" checked=isCompleted class="toggle"/\}\}/
+          <label /\{\{/action "editTodo" on="doubleClick"/\}\}/>/\{\{/title/\}\}/</label>
           <button class="destroy"></button>
-        {{/if}}
+        /\{\{//if/\}\}/
       </li>
-    {{/each}}
+    /\{\{//each/\}\}/
     <!--- ... additional lines truncated for brevity ... -->
+{% endhighlight %}
 
 And then update our `app/controllers/todo.js` controller:
 
+{% highlight js %}
     // ... additional lines truncated for brevity ...
     export default Ember.ObjectController.extend({
       actions: {
@@ -354,6 +385,7 @@ And then update our `app/controllers/todo.js` controller:
 
       isCompleted: function(key, value){
     // ... additional lines truncated for brevity ...
+{% endhighlight %}
 
 You can now double-click a todo to edit it.
 
@@ -361,22 +393,27 @@ You can now double-click a todo to edit it.
 
 In `app/templates/todos.hbs` change out the static input tag under if editing:
 
+{% highlight html %}
     <!--- ... additional lines truncated for brevity ... -->
-    {{#if isEditing}}
-      {{input class="edit" value=title focus-out="acceptChanges" insert-newline="acceptChanges" autofocus="autofocus"}}
-    {{else}}
+    /\{\{/#if isEditing/\}\}/
+      /\{\{/input class="edit" value=title focus-out="acceptChanges" insert-newline="acceptChanges" autofocus="autofocus"/\}\}/
+    /\{\{/else/\}\}/
     <!--- ... additional lines truncated for brevity ... -->
+{% endhighlight %}
 
 ## Deleting a Model
 
 In `app/templates/todos.hbs` update the delete button:
 
+{% highlight html %}
     <!--- ... additional lines truncated for brevity ... -->
-    <button {{action "removeTodo"}} class="destroy"></button>
+    <button /\{\{/action "removeTodo"/\}\}/ class="destroy"></button>
     <!--- ... additional lines truncated for brevity ... -->
+{% endhighlight %}
 
 In `app/controllers/todo.js` add the `removeTodo` action:
 
+{% highlight js %}
     // ... additional lines truncated for brevity ...
     actions: {
       editTodo: function() {
@@ -398,6 +435,8 @@ In `app/controllers/todo.js` add the `removeTodo` action:
       }
     },
     // ... additional lines truncated for brevity ...
+{% endhighlight %}
+
 
 Now you can delete todos.
 
@@ -405,203 +444,229 @@ Now you can delete todos.
 
 Inside of `app/templates/todos.hbs` move the entire contents of `<ul id="todo-list"` section into a new template called: `app/templates/todos/index.hbs`.
 
-Within `app/templates/todos.hbs` place a Handlebars `{{outlet}}` helper where the `<ul>` was previously:
+Within `app/templates/todos.hbs` place a Handlebars `/\{\{/outlet/\}\}/` helper where the `<ul>` was previously:
 
-    <!--- ... additional lines truncated for brevity ... -->
-    <section id="main">
-      {{outlet}}
+{% highlight html %}
+<!--- ... additional lines truncated for brevity ... -->
+<section id="main">
+  /\{\{/outlet/\}\}/
 
-      <input type="checkbox" id="toggle-all">
-    </section>
-    <!--- ... additional lines truncated for brevity ... -->
+  <input type="checkbox" id="toggle-all">
+</section>
+<!--- ... additional lines truncated for brevity ... -->
+{% endhighlight %}
 
 In `app/router.js` change the `todos` mapping with an additional empty function parameter so it can accept child routes:
 
-    Router.map(function() {
-      this.resource('todos', { path: '/' }, function() {
-        // additional child routes will go here later
-      });
-    });
+{% highlight js %}
+Router.map(function() {
+  this.resource('todos', { path: '/' }, function() {
+    // additional child routes will go here later
+  });
+});
+{% endhighlight %}
 
 Create a new folder called `todos` inside of the `app/routes/` directory.
 
 Create a new file called `index.js` inside of the `app/routes/todos/` directory and add the following code:
 
-    import Ember from 'ember';
+{% highlight js %}
+import Ember from 'ember';
 
-    export default Ember.Route.extend({
-      model: function() {
-        return this.modelFor('todos');
-      }
-    });
+export default Ember.Route.extend({
+  model: function() {
+    return this.modelFor('todos');
+  }
+});
+{% endhighlight %}
 
 ## Transitioning to Show Only Incomplete Todos
 
-In `app/templates/todos.hbs` convert the `<a>` tag for 'Active' todos into a Handlebars `{{link-to}}` helper:
+In `app/templates/todos.hbs` convert the `<a>` tag for 'Active' todos into a Handlebars `/\{\{/link-to/\}\}/` helper:
 
-    <!--- ... additional lines truncated for brevity ... -->
-    <li>
-      <a href="all">All</a>
-    </li>
-    <li>
-      {{#link-to "todos.active" activeClass="selected"}}Active{{/link-to}}
-    </li>
-    <li>
-      <a href="completed">Completed</a>
-    </li>
-    <!--- ... additional lines truncated for brevity ... -->
+{% highlight html %}
+<!--- ... additional lines truncated for brevity ... -->
+<li>
+  <a href="all">All</a>
+</li>
+<li>
+  /\{\{/#link-to "todos.active" activeClass="selected"/\}\}/Active/\{\{//link-to/\}\}/
+</li>
+<li>
+  <a href="completed">Completed</a>
+</li>
+<!--- ... additional lines truncated for brevity ... -->
+{% endhighlight %}
 
 In `app/router.js` update the router to recognize this new path:
 
-    // ... additional lines truncated for brevity ...
-    Router.map(function() {
-      this.resource('todos', { path: '/' }, function() {
-        this.route('active');
-      });
-    });
-    // ... additional lines truncated for brevity ...
+{% highlight js %}
+// ... additional lines truncated for brevity ...
+Router.map(function() {
+  this.resource('todos', { path: '/' }, function() {
+    this.route('active');
+  });
+});
+// ... additional lines truncated for brevity ...
+{% endhighlight %}
 
 In `app/routes/todos/active.js` implement a matching route:
 
-    import Ember from 'ember';
+{% highlight js %}
+import Ember from 'ember';
 
-    export default Ember.Route.extend({
-      model: function() {
-        return this.store.filter('todo', function(todo) {
-          return !todo.get('isCompleted');
-        });
-      },
-      renderTemplate: function(controller) {
-        this.render('todos/index', { controller: controller} );
-      }
+export default Ember.Route.extend({
+  model: function() {
+    return this.store.filter('todo', function(todo) {
+      return !todo.get('isCompleted');
     });
-
+  },
+  renderTemplate: function(controller) {
+    this.render('todos/index', { controller: controller} );
+  }
+});
+{% endhighlight %}
 
 ## Transitioning to Show Only Complete Todos
 
-In `app/templates/todos.hbs` convert the `<a>` tag for 'Completed' todos into a Handlebars `{{link-to}}` helper:
+In `app/templates/todos.hbs` convert the `<a>` tag for 'Completed' todos into a Handlebars `/\{\{/link-to/\}\}/` helper:
 
+{% highlight html %}
     <!--- ... additional lines truncated for brevity ... -->
     <li>
       <a href="all">All</a>
     </li>
     <li>
-      {{#link-to "todos.active" activeClass="selected"}}Active{{/link-to}}
+      /\{\{/#link-to "todos.active" activeClass="selected"/\}\}/Active/\{\{//link-to/\}\}/
     </li>
     <li>
-      {{#link-to "todos.completed" activeClass="selected"}}Completed{{/link-to}}
+      /\{\{/#link-to "todos.completed" activeClass="selected"/\}\}/Completed/\{\{//link-to/\}\}/
     </li>
     <!--- ... additional lines truncated for brevity ... -->
+{% endhighlight %}
 
 In `app/router.js` update the router to recognize this new path:
 
-    Router.map(function() {
-      this.resource('todos', { path: '/' }, function() {
-        this.route('active');
-        this.route('completed');
-      });
-    });
+{% highlight js %}
+Router.map(function() {
+  this.resource('todos', { path: '/' }, function() {
+    this.route('active');
+    this.route('completed');
+  });
+});
+{% endhighlight %}
 
 In `app/routes/todos/completed.js` implement a matching route:
 
-    import Ember from 'ember';
+{% highlight js %}
+import Ember from 'ember';
 
-    export default Ember.Route.extend({
-      model: function() {
-        return this.store.filter('todo', function(todo) {
-          return todo.get('isCompleted');
-        });
-      },
-      renderTemplate: function(controller) {
-        this.render('todos/index', {controller: controller});
-      }
+export default Ember.Route.extend({
+  model: function() {
+    return this.store.filter('todo', function(todo) {
+      return todo.get('isCompleted');
     });
-
+  },
+  renderTemplate: function(controller) {
+    this.render('todos/index', {controller: controller});
+  }
+});
+{% endhighlight %}
 
 ## Transitioning back to Show All Todos
 
-In `app/templates/todos.hbs` convert the `<a>` tag for 'All' todos into a Handlebars `{{link-to}}` helper:
+In `app/templates/todos.hbs` convert the `<a>` tag for 'All' todos into a Handlebars `/\{\{/link-to/\}\}/` helper:
 
-    <!--- ... additional lines truncated for brevity ... -->
-    <li>
-      {{#link-to "todos.index" activeClass="selected"}}All{{/link-to}}
-    </li>
-    <li>
-      {{#link-to "todos.active" activeClass="selected"}}Active{{/link-to}}
-    </li>
-    <li>
-      {{#link-to "todos.completed" activeClass="selected"}}Completed{{/link-to}}
-    </li>
-    <!--- ... additional lines truncated for brevity ... -->
+{% highlight html %}
+<!--- ... additional lines truncated for brevity ... -->
+<li>
+  /\{\{/#link-to "todos.index" activeClass="selected"/\}\}/All/\{\{//link-to/\}\}/
+</li>
+<li>
+  /\{\{/#link-to "todos.active" activeClass="selected"/\}\}/Active/\{\{//link-to/\}\}/
+</li>
+<li>
+  /\{\{/#link-to "todos.completed" activeClass="selected"/\}\}/Completed/\{\{//link-to/\}\}/
+</li>
+<!--- ... additional lines truncated for brevity ... -->
+{% endhighlight %}
 
 ## Displaying a Button to Remove All Completed Todos
 
 In `app/templates/todos.hbs` update the static `<button>` for clearing all completed todos:
 
-    <!--- ... additional lines truncated for brevity ... -->
-    {{#if hasCompleted}}
-      <button id="clear-completed" {{action "clearCompleted"}}>
-        Clear completed ({{completed}})
-      </button>
-    {{/if}}
-    <!--- ... additional lines truncated for brevity ... -->
+{% highlight html %}
+<!--- ... additional lines truncated for brevity ... -->
+/\{\{/#if hasCompleted/\}\}/
+  <button id="clear-completed" /\{\{/action "clearCompleted"/\}\}/>
+    Clear completed (/\{\{/completed/\}\}/)
+  </button>
+/\{\{//if/\}\}/
+<!--- ... additional lines truncated for brevity ... -->
+{% endhighlight %}
 
 In `app/controllers/todos.js` implement the matching properties and a method that will clear completed todos and persist these changes when the button is clicked:
 
-    import Ember from 'ember';
+{% highlight js %}
+import Ember from 'ember';
 
-    export default Ember.ArrayController.extend({
-      actions: {
-        clearCompleted: function() {
-          var completed = this.filterBy('isCompleted', true);
-          completed.invoke('deleteRecord');
-          completed.invoke('save');
-        },
-        // ... additional lines truncated for brevity ...
-      },
-      hasCompleted: function() {
-        return this.get('completed') > 0;
-      }.property('completed'),
+export default Ember.ArrayController.extend({
+  actions: {
+    clearCompleted: function() {
+      var completed = this.filterBy('isCompleted', true);
+      completed.invoke('deleteRecord');
+      completed.invoke('save');
+    },
+    // ... additional lines truncated for brevity ...
+  },
+  hasCompleted: function() {
+    return this.get('completed') > 0;
+  }.property('completed'),
 
-      completed: function() {
-        return this.filterBy('isCompleted', true).get('length');
-      }.property('@each.isCompleted'),
-      // ... additional lines truncated for brevity ...
-
+  completed: function() {
+    return this.filterBy('isCompleted', true).get('length');
+  }.property('@each.isCompleted'),
+  // ... additional lines truncated for brevity ...
+{% endhighlight %}
 ## Indicating When All Todos Are Complete
 
-In `app/templates/todos.hbs` replace the static checkbox `<input>` with an `{{input}}`:
+In `app/templates/todos.hbs` replace the static checkbox `<input>` with an `/\{\{/input/\}\}/`:
 
-    <!--- ... additional lines truncated for brevity ... -->
-    <section id="main">
-      {{outlet}}
-      {{input type="checkbox" id="toggle-all" checked=allAreDone}}
-    </section>
-    <!--- ... additional lines truncated for brevity ... -->
+{% highlight html %}
+<!--- ... additional lines truncated for brevity ... -->
+<section id="main">
+  /\{\{/outlet/\}\}/
+  /\{\{/input type="checkbox" id="toggle-all" checked=allAreDone/\}\}/
+</section>
+<!--- ... additional lines truncated for brevity ... -->
+{% endhighlight %}
 
 In `app/controllers/todos.js` implement the matching `allAreDone` property:
 
-    // ... additional lines truncated for brevity ...
-    allAreDone: function(key, value) {
-      return !!this.get('length') && this.isEvery('isCompleted');
-    }.property('@each.isCompleted')
-    // ... additional lines truncated for brevity ...
-
+{% highlight js %}
+// ... additional lines truncated for brevity ...
+allAreDone: function(key, value) {
+  return !!this.get('length') && this.isEvery('isCompleted');
+}.property('@each.isCompleted')
+// ... additional lines truncated for brevity ...
+{% endhighlight %}
 ## Toggling All Todos Between Complete and Incomplete
 
 Update the `allAreDone` property in `app/controllers/todos.js` to handle both getting and setting behavior:
 
-    // ... additional lines truncated for brevity ...
-    allAreDone: function(key, value) {
-      if (value === undefined) {
-        return !!this.get('length') && this.everyProperty('isCompleted', true);
-      } else {
-        this.setEach('isCompleted', value);
-        this.invoke('save');
-        return value;
-      }
-    }.property('@each.isCompleted')
-    // ... additional lines truncated for brevity ...
+{% highlight js %}
+// ... additional lines truncated for brevity ...
+allAreDone: function(key, value) {
+  if (value === undefined) {
+    return !!this.get('length') && this.everyProperty('isCompleted', true);
+  } else {
+    this.setEach('isCompleted', value);
+    this.invoke('save');
+    return value;
+  }
+}.property('@each.isCompleted')
+// ... additional lines truncated for brevity ...
+{% endhighlight %}
 
 ## Replacing the Fixture Adapter with Another Adapter
 

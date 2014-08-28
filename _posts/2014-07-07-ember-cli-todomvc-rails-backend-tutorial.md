@@ -22,53 +22,58 @@ Now our directory structure should like like: `~/code/todos/ember` and `~/code/t
 
 Now that we are inside of our Rails directory lets edit the `Gemfile` and get rid of some Javascript dependencies and add some tools that we will need for our API. The new `Gemfile` should look like this:
 
-    source 'https://rubygems.org'
+{% highlight  ruby %}
+source 'https://rubygems.org'
 
-    gem 'rails', '4.1.1'
-    gem 'sdoc', '~> 0.4.0',          group: :doc
-    gem 'spring',        group: :development
-    gem 'active_model_serializers'
-    gem 'rack-cors', :require => 'rack/cors'
+gem 'rails', '4.1.1'
+gem 'sdoc', '~> 0.4.0',          group: :doc
+gem 'spring',        group: :development
+gem 'active_model_serializers'
+gem 'rack-cors', :require => 'rack/cors'
 
-    group :development, :test do
-      gem 'sqlite3'
-    end
+group :development, :test do
+  gem 'sqlite3'
+end
 
-    group :production do
-      gem 'pg'
-    end
+group :production do
+  gem 'pg'
+end
+{% endhighlight %}
 
 Now run `bundle install`.
 
 Now let's edit our `config/application.rb` file. We are going to comment out the line with `sprockets` in it and add some stuff to take care of CORS. Your new file should like like the following:
 
-    require File.expand_path('../boot', __FILE__)
+{% highlight  ruby %}
+require File.expand_path('../boot', __FILE__)
 
-    # Pick the frameworks you want:
-    require "active_model/railtie"
-    require "active_record/railtie"
-    require "action_controller/railtie"
-    require "action_mailer/railtie"
-    require "action_view/railtie"
-    # require "sprockets/railtie"
-    require "rails/test_unit/railtie"
+# Pick the frameworks you want:
+require "active_model/railtie"
+require "active_record/railtie"
+require "action_controller/railtie"
+require "action_mailer/railtie"
+require "action_view/railtie"
+# require "sprockets/railtie"
+require "rails/test_unit/railtie"
 
-    # Require the gems listed in Gemfile, including any gems
-    # you've limited to :test, :development, or :production.
-    Bundler.require(*Rails.groups)
+# Require the gems listed in Gemfile, including any gems
+# you've limited to :test, :development, or :production.
+Bundler.require(*Rails.groups)
 
-    module Todoemberrails
-      class Application < Rails::Application
-        config.assets.enabled = false
+module Todoemberrails
+  class Application < Rails::Application
+    config.assets.enabled = false
 
-        config.middleware.use Rack::Cors do
-          allow do
-            origins '*'
-            resource '*', headers: :any, methods: [:get, :post, :put, :delete, :options]
-          end
-        end
+    config.middleware.use Rack::Cors do
+      allow do
+        origins '*'
+        resource '*', headers: :any, methods: [:get, :post, :put, :delete, :options]
       end
     end
+  end
+end
+
+{% endhighlight %}
 
 ## Creating our Todos Model
 
@@ -92,9 +97,11 @@ And then create a new file inside of that folder called: `todo_serializer.rb`:
 
 Inside of this file type:
 
+{% highlight  ruby %}
     class TodoSerializer < ActiveModel::Serializer
       attributes :id, :title, :is_completed
     end
+{% endhighlight %}
 
 ## Creating our Controller
 
@@ -108,58 +115,62 @@ Now let's make our todos controller file:
 
 Now edit this file to look like the following:
 
-    class Api::TodosController < ApplicationController
-      skip_before_action :verify_authenticity_token
-      def index
-        render json: Todo.all
-      end
+{% highlight  ruby %}
+class Api::TodosController < ApplicationController
+  skip_before_action :verify_authenticity_token
+  def index
+    render json: Todo.all
+  end
 
-      def show
-        render json: Todo.find(params[:id])
-      end
+  def show
+    render json: Todo.find(params[:id])
+  end
 
-      def create
-        todo = Todo.new(todo_params)
+  def create
+    todo = Todo.new(todo_params)
 
-        if todo.save
-          render json: todo, status: :created
-        else
-          render json: todo.errors, status: :unprocessable_entity
-        end
-      end
-
-      def update
-        todo = Todo.find(params[:id])
-
-        if todo.update_attributes(todo_params)
-          render json: todo
-        else
-          render json: todo.errors, status: :unprocessable_entity
-        end
-      end
-
-      def destroy
-        todo = Todo.find(params[:id])
-        todo.destroy
-        head :no_content
-      end
-
-      private
-
-      def todo_params
-        params.require(:todo).permit(:title, :is_completed)
-      end
+    if todo.save
+      render json: todo, status: :created
+    else
+      render json: todo.errors, status: :unprocessable_entity
     end
+  end
+
+  def update
+    todo = Todo.find(params[:id])
+
+    if todo.update_attributes(todo_params)
+      render json: todo
+    else
+      render json: todo.errors, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    todo = Todo.find(params[:id])
+    todo.destroy
+    head :no_content
+  end
+
+  private
+
+  def todo_params
+    params.require(:todo).permit(:title, :is_completed)
+  end
+end
+{% endhighlight %}
 
 ## Creating our Routes
 
 Now we need to do setup our `config/routes.rb` file to talk to our controller. It should like like:
 
-    Rails.application.routes.draw do
-      namespace :api do
-        resources :todos
-      end
-    end
+{% highlight  ruby %}
+Rails.application.routes.draw do
+  namespace :api do
+    resources :todos
+  end
+end
+{% endhighlight %}
 
 ## Starting our Server
 
@@ -169,11 +180,13 @@ Now that we have everything configured let's start our Rails Server with the `ra
 
 Now inside of our `ember` directory open up `app/adapters/application.js`. And edit the file to look like the following:
 
-    import DS from 'ember-data';
+{% highlight  js %}
+import DS from 'ember-data';
 
-    export default DS.ActiveModelAdapter.extend({
-      host: 'http://localhost:3000/api'
-    });
+export default DS.ActiveModelAdapter.extend({
+  host: 'http://localhost:3000/api'
+});
+{% endhighlight %}
 
 This tells are Ember app where it can reach our Rails API.
 

@@ -1,24 +1,13 @@
-# Dependencies
-markdown:         redcarpet
-pygments:         true
-
-# Permalinks
-permalink:        pretty
-
-# Setup
-title:            Blake Erickson
-tagline:          'A programming blog'
-description:      'I like to create web apps with ruby and javascript'
-url:              http://blakeerickson.com
+# Site settings
+title: Blake Erickson
+email:
+description: "I like to ship code."
+baseurl: ""
+url: "http://blakeerickson.com"
+twitter_username: oblakeerickson
+github_username:  oblakeerickson
 discourse_url:    "http://discuss.blakeerickson.com/"
 
-author:
-  name:           'Blake Erickson'
-  url:            https://twitter.com/oblakeerickson
-
-paginate:         10
-
-# Custom vars
-
-github:
-  repo:           https://github.com/oblakeerickson
+# Build settings
+markdown: kramdown
+permalink: pretty

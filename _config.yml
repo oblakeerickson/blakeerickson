@@ -10,7 +10,7 @@ title:            Blake Erickson
 tagline:          'A programming blog'
 description:      'I like to create web apps with ruby and javascript'
 url:              http://blakeerickson.com
-discourse_url:    "http://discuss.blakeerickson.com"
+discourse_url:    "http://discuss.blakeerickson.com/"
 
 author:
   name:           'Blake Erickson'

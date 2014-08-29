@@ -7,6 +7,7 @@ Now that we have our ember application working, let's add in a data persistance 
 
 Our current directory structure for our Ember app should look something like this: `~/code/todos`, but want to put our Rails and Ember app in separate directories, but under the same parent directory. So, let's work on that now by renaming the current ember application directory, creating a new project directory, moving our ember directory into the project directory, and then creating our rails project:
 
+{% raw %}
     cd ~/code/
     mv todos ember
     mkdir todos
@@ -15,6 +16,7 @@ Our current directory structure for our Ember app should look something like thi
     rails new todos
     mv todos rails
     cd rails
+{% endraw %}
 
 Now our directory structure should like like: `~/code/todos/ember` and `~/code/todos/rails`.
 

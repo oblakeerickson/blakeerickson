@@ -93,7 +93,7 @@ Replace the text inside of `app/templates/application.hbs` with the following:
 
 Replace the contents of `app/styles/app.css` with this [stylesheet](http://emberjs.com.s3.amazonaws.com/getting-started/style.css).
 
-Inside of the `public/` folder create a new folder called `assets` and place the `bg.png` file in that folder.
+Inside of the `public/` folder create a new folder called `assets` and place the [`bg.png`](http://emberjs.com.s3.amazonaws.com/getting-started/bg.png) file in that folder.
 
 ## Obtaining Ember.js and Dependencies
 
@@ -123,7 +123,7 @@ Router.map(function() {
 export default Router;
 {% endhighlight %}
 
-Now copy the entire contents of the `app/templates/applicaiton.hbs` file into a new file called `app/templates/todos.hbs`.
+Now copy the entire contents of the `app/templates/application.hbs` file into a new file called `app/templates/todos.hbs`.
 
 Then replace the entire contents of the `app/templates/application.hbs` file with:
 

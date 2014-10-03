@@ -3,7 +3,7 @@ This post will walk you through how to build the Todo MVC app that the [Official
 Using Ember CLI has many benefits over just linking to ember in your html script tag, here are a few:
 
 - Comes with a built in webserver
-- Auto builds your code so you don't have to refresh the browser all the time
+- Auto builds your code so you don't have to refresh the browser all the time (there might be a bug in 0.0.47 that is keeping this from working)
 - Default folder structure so every project looks the similar
 - Can generate model, controller, template, route, and test files for you
 - You can write ES6 javascript

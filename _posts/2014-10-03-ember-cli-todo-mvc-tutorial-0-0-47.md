@@ -1,3 +1,8 @@
+---
+layout: post
+title: Ember CLI - TodoMVC Tutorial (for v0.0.47)
+---
+
 This post will walk you through how to build the Todo MVC app that the [Official Ember Getting Started Guide](http://emberjs.com/guides/getting-started/) walks you through but shows you how to use Ember CLI instead.
 
 Using Ember CLI has many benefits over just linking to ember in your html script tag, here are a few:

@@ -3,6 +3,8 @@ layout: post
 title: Ember CLI - TodoMVC Tutorial
 ---
 
+**Update:** This version was written for ember-cli version 0.0.37. Please read my [updated tutorial for ember-cli version 0.0.47](http://blakeerickson.com/2014/06/17/ember-cli-todomvc-tutorial/).
+
 Welcome to Ember CLI! This guide mirrors what is in the official ember.js getting started guide, but walks you through doing it with Ember CLI. Some things will be different than the guide, which is why I wrote this guide to help you through those differences and hopefully you won't struggle as much as I did.
 
 I do recommend reading the getting started guide first since I'm going to leave out some of the details that it covers more throughly.

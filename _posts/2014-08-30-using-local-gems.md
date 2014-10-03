@@ -36,7 +36,7 @@ As you can see we specified a `:path` pointing to where the gem can be found loc
     bundle install
 {% endraw %}
 
-Once of the lines of output fromt the `bundle install` command will be:
+Once of the lines of output from the `bundle install` command will be:
 
 {% raw %}
     Using discourse_api 0.2.1 from source at /vagrant/discourse_api

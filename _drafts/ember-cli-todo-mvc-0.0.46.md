@@ -1,6 +1,6 @@
-This post will walk you through how to build the Todo MVC app that the Ember Guide walks you through but shows you how to use ember-cli instead.
+This post will walk you through how to build the Todo MVC app that the [Official Ember Getting Started Guide](http://emberjs.com/guides/getting-started/) walks you through but shows you how to use Ember CLI instead.
 
-Using ember-cli has many benefits over just linking to ember in your html script tag, here are a few:
+Using Ember CLI has many benefits over just linking to ember in your html script tag, here are a few:
 
 - Comes with a built in webserver
 - Auto builds your code so you don't have to refresh the browser all the time
@@ -12,7 +12,7 @@ Because ember-cli is so helpfull it is going to be part of ember 2.0 so I think 
 
 ## Getting Started
 
-The first thing we need to do is install ember-cli. Here are the basic steps for getting it installed on your system. For more details please see the [official website](http://www.ember-cli.com/#getting-started).
+The first thing we need to do is install Ember CLI. Here are the basic steps for getting it installed on your system. For more details please see the [official website](http://www.ember-cli.com/#getting-started). This guide was written for Ember CLI version 0.0.47. Other versions might work but your mileage may vary. Anyways, back to installing Ember CLI
 
 At your terminal type:
 
@@ -481,7 +481,11 @@ Now you can delete todos.
 
 ## Adding Child Routes
 
-Inside of `app/templates/todos.hbs` move the entire contents of `<ul id="todo-list"` section into a new template called: `app/templates/todos/index.hbs`.
+Create a new template for our child route:
+
+    ember generate route todos/index
+
+Inside of `app/templates/todos.hbs` move the entire contents of `<ul id="todo-list"` section (including the `<ul></ul>` tags) into this new file: `app/templates/todos/index.hbs`.
 
 Within `app/templates/todos.hbs` place a Handlebars `{{ "{{outlet" }}}}` helper where the `<ul>` was previously:
 
@@ -505,9 +509,8 @@ Router.map(function() {
 });
 {% endhighlight %}
 
-Create a new folder called `todos` inside of the `app/routes/` directory.
 
-Create a new file called `index.js` inside of the `app/routes/todos/` directory and add the following code:
+Add the following code to `app/routes/todos/index.js`:
 
 {% highlight js %}
 import Ember from 'ember';
@@ -537,16 +540,27 @@ In `app/templates/todos.hbs` convert the `<a>` tag for 'Active' todos into a Han
     <!--- ... additional lines truncated for brevity ... -->
 {% endraw %}
 
-In `app/router.js` update the router to recognize this new path:
+Let's generate a our 'active' route:
+
+    ember generate route todos/active
+
+In `app/router.js` update the router add the active route under the 'todos' resource and be sure to clean up the 'todos/active' route created by the generator:
 
 {% highlight js %}
-// ... additional lines truncated for brevity ...
+import Ember from 'ember';
+import config from './config/environment';
+
+var Router = Ember.Router.extend({
+  location: config.locationType
+});
+
 Router.map(function() {
   this.resource('todos', { path: '/' }, function() {
     this.route('active');
   });
 });
-// ... additional lines truncated for brevity ...
+
+export default Router;
 {% endhighlight %}
 
 In `app/routes/todos/active.js` implement a matching route:
@@ -584,7 +598,11 @@ In `app/templates/todos.hbs` convert the `<a>` tag for 'Completed' todos into a 
     <!--- ... additional lines truncated for brevity ... -->
 {% endraw %}
 
-In `app/router.js` update the router to recognize this new path:
+Let's generate a new route for showing the completed tasks with:
+
+    ember generate route todos/completed
+
+In `app/router.js` update the router add the 'completed' route under the 'todos' resource and be sure to clean up the 'todos/completed' route created by the generator:
 
 {% highlight js %}
 Router.map(function() {
@@ -710,4 +728,4 @@ allAreDone: function(key, value) {
 
 ## Replacing the Fixture Adapter with Another Adapter
 
-I couldn't figure out how to get this to work with ember-cli, but I will be writing another post that talks about how to connect to a Rails backend for data persistance.
+I couldn't figure out how to get this to work with Ember CLI, but I will be writing another post that talks about how to connect to a Rails backend for data persistance.

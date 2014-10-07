@@ -181,7 +181,7 @@ import DS from 'ember-data';
 export default DS.FixtureAdapter.extend();
 {% endhighlight %}
 
-Now go back to our model `app/models/todo.js` and the fixture to it and make sure to create the  `Todo` variable so that the file now looks like:
+Now go back to our model `app/models/todo.js` and add a fixture to it. Also, make sure to create the `Todo` variable. The file should now look like:
 
 {% highlight js %}
 import DS from 'ember-data';

@@ -271,9 +271,7 @@ Now we need to create a new controller for our todos so that we can something to
 
     ember generate controller todos --type=array
 
-Inside of the `app/controllers/` folder create a new file called: `todos.js` and put the following code inside of it:
-
-This weill generate a new file for us in `app/controllers/todos.js`. Edit this file so that it now looks like:
+This will generate a new file for us in `app/controllers/todos.js`. Edit this file so that it now looks like:
 
 {% highlight js %}
 import Ember from 'ember';

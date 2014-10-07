@@ -171,7 +171,7 @@ export default DS.Model.extend({
 
 To enable fixtures run the command:
 
-    `ember generate adapters application`
+    ember generate adapter application
 
 and inside the `app/adapters/application.js` file replace `RESTAdapter` with `FixtureAdapter`.
 

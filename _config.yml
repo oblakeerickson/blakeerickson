@@ -1,13 +1,34 @@
 # Site settings
 title: Blake Erickson
-email:
-description: "I like to ship code."
+email: o.blakeerickson@gmail.com
+description: "My coding adventures with ruby and javascript"
 baseurl: ""
 url: "http://blakeerickson.com"
 twitter_username: oblakeerickson
 github_username:  oblakeerickson
 discourse_url:    "http://discuss.blakeerickson.com/"
 
+# Google analytics
+google_analytics: "blakeerickson.com"
+
+# Optional features
+animated:           false
+show_related_posts: false
+show_post_footers:  false
+
+# Social icons
+show_social_icons: false
+github_username:
+twitter_username:
+google_plus_id:
+linkedin_username:
+bitcoin_url:
+paypal_url:
+flattr_button:
+
 # Build settings
 markdown: kramdown
 permalink: pretty
+paginate:     10
+sass:
+  compressed: true

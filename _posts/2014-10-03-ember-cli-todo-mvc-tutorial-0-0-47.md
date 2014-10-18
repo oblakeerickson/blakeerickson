@@ -21,20 +21,28 @@ The first thing we need to do is install Ember CLI. Here are the basic steps for
 
 At your terminal type:
 
-    npm install -g ember-cli
+{% highlight bash %}
+npm install -g ember-cli
+{% endhighlight %}
 
 And now install Bower:
 
-    npm install -g bower
+{% highlight bash %}
+npm install -g bower
+{% endhighlight %}
 
 Now navigate to where you want to place your project code and create a new ember app:
 
+{% highlight bash %}
     ember new todos
+{% endhighlight %}
 
 Now start the server:
 
-    cd todos
-    ember server
+{% highlight bash %}
+cd todos
+ember server
+{% endhighlight %}
 
 Navigate to `http://localhost:4200` in your web browser to see your new app in action. I recommend using Chrome or Firefox because they have [Ember Inspector](https://github.com/emberjs/ember-inspector), but also because I feel like those browsers have better tooling for viewing javascript errors.
 
@@ -138,7 +146,9 @@ export default Router;
 
 From the terminal type:
 
-    ember generate route todos
+{% highlight bash %}
+ember generate route todos
+{% endhighlight %}
 
 This will create a new file for us inside of `app/templates/todos.hbs`. Now copy the entire contents of the `app/templates/application.hbs` file into this new file.
 

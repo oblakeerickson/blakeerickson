@@ -15,20 +15,11 @@ I really enjoy programming, building apps that people love to use, and studying 
 <div id="mc_embed_signup">
 <form action="//blakeerickson.us9.list-manage.com/subscribe/post?u=0ed3aee764b2fa88f48a83a77&amp;id=51d7bf4378" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
     <div id="mc_embed_signup_scroll">
-	<h2>Subscribe to my newsletter to get access to exclusive content and the latest updates on my new book: Learning Ember.js</h2>
-<div class="indicates-required"><span class="asterisk">*</span> indicates required</div>
+	<h2>Subscribe to my newsletter to get access to exclusive content and the latest updates on my book: Learning Ember.js</h2>
 <div class="mc-field-group">
-	<label for="mce-EMAIL">Email Address  <span class="asterisk">*</span>
+	<label for="mce-EMAIL">Email Address
 </label>
 	<input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
-</div>
-<div class="mc-field-group">
-	<label for="mce-FNAME">First Name </label>
-	<input type="text" value="" name="FNAME" class="" id="mce-FNAME">
-</div>
-<div class="mc-field-group">
-	<label for="mce-LNAME">Last Name </label>
-	<input type="text" value="" name="LNAME" class="" id="mce-LNAME">
 </div>
 	<div id="mce-responses" class="clear">
 		<div class="response" id="mce-error-response" style="display:none"></div>

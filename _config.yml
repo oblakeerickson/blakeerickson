@@ -3,13 +3,13 @@ title: Blake Erickson
 email: o.blakeerickson@gmail.com
 description: "My coding adventures with ruby and javascript"
 baseurl: ""
-url: "http://blakeerickson.com"
+url: "http://blaketv.com"
 twitter_username: oblakeerickson
 github_username:  oblakeerickson
 discourse_url:    "http://discuss.blakeerickson.com/"
 
 # Google analytics
-google_analytics: "blakeerickson.com"
+google_analytics: "blaketv.com"
 
 # Optional features
 animated:           false

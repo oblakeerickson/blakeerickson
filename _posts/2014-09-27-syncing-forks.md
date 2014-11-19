@@ -9,25 +9,33 @@ Once they merge in your pull request and maybe some other peoples pull requests 
 
 First thing you are going to want to is configure another repository that you can push to. When you run `git push origin feature-branch` you are pushing to your forked repo on GitHub. 'origin' is the name of this location. To configure another repo to push to run this command:
 
-    git remote add upstream https://github.com/original_owner/original_repository.git
+{% highlight bash %}
+git remote add upstream https://github.com/original_owner/original_repository.git
+{% endhighlight %}
 
 Now you have two locations you can push to: 'origin' and 'upstream'. You can name this whatever you want.
 
 Now that we have our upstream repository configured we can sync our fork. Make sure you are not in your feature branch any more:
 
-    git checkout master
+{% highlight bash %}
+git checkout master
+{% endhighlight %}
 
 Now you can get the latest code from the main repository:
 
-    get fetch upstream
+{% highlight bash %}
+git fetch upstream
+{% endhighlight %}
 
 Now that we have the latest code on our local computer we just need to merge them:
 
-    get merge upstream/master
+{% highlight bash %}
+git merge upstream/master
+{% endhighlight %}
 
 And that's it. Good luck on your next pull request.
 
 Resources - GitHub has published two great articles on how to sync forks. You should refer to them if you need any more assistance:
 
-- https://help.github.com/articles/syncing-a-fork
-- https://help.github.com/articles/configuring-a-remote-for-a-fork
+- [https://help.github.com/articles/syncing-a-fork](https://help.github.com/articles/syncing-a-fork)
+- [https://help.github.com/articles/configuring-a-remote-for-a-fork](https://help.github.com/articles/syncing-a-fork)

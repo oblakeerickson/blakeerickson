@@ -3,7 +3,7 @@ layout: page
 title: Projects
 ---
 
-Here is a list of things that I have created. Some are personal projects and others are things that I have created while working at [BasicSafe](http://basicsafe.us) (current employer) and [Pinnpointe](http://www.pinnpointe.com/)(previous employer).
+Here is a list of things that I have created. Some are personal projects and others are things that I have created while working at [Royal Jay](http://royaljay.com), [BasicSafe](http://basicsafe.us) (previous employer) and [Pinnpointe](http://www.pinnpointe.com/)(previous previous employer).
 
 ### Longest Streak
 

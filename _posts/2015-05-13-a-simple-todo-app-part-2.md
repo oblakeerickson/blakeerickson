@@ -3,14 +3,14 @@ layout: post
 title: A Simple Todo App - Part 2
 ---
 
-In [Part 1](http://blaketv.com/2015/04/20/a-simple-todo-app-part-1/) we built the backend for our todo app and now we are going to build the
+In [Part 1](/2015/04/20/a-simple-todo-app-part-1/) we built the backend for our todo app and now we are going to build the
 frontend in Angular. Let's get that setup.
 
 ## Download Angular and Create Bundle
 
 The first thing we need to is download angular and add it to our C# project. Go
-to https://code.angularjs.org and click on 1.2.2 (yes, I'm using an older
-version). Download angular.js and angular-route.js and put it into your Scripts
+to [https://code.angularjs.org](https://code.angularjs.org) and click on 1.2.2 (yes, I'm using an older
+version). Download angular.js and put it into your Scripts
 folder. You now need to show all files and then select each of the files and
 click add to project.
 
@@ -20,8 +20,7 @@ bottom of the RegisterBundles method add another bundle that we will call
 
 {% highlight csharp %} 
 bundles.Add(new ScriptBundle("~/bundles/angular").Include( 
-    "~/Scripts/angular.js",
-    "~/Scripts/angular-route.js")); 
+    "~/Scripts/angular.js")); 
 {% endhighlight %}
 
 Now that we have angular installed we need a place to store the actually
@@ -43,17 +42,17 @@ layout file. So open up `_Layout.cshtml` which is inside of 'Views/Shared/'. Nea
 the top inside of the `<head></head>` tags add the following lines below the
 other `@Scripts.Render` line:
 
-{% highlight csharp %} 
+{% highlight csharp %}
 @Scripts.Render("~/bundles/angular")
-@Scripts.Render("~/bundles/app") 
+@Scripts.Render("~/bundles/app")
 {% endhighlight %}
 
 Still inside of `Views/Shared/_Layout.cshtml` modify the `<html>` tag so that it
 looks like:
 
-<% highlight html %>
+{% highlight html %}
 <html ng-app="app">
-<% endhighlight %>
+{% endhighlight %}
 
 This lets angular know that we want to start using it.
 
@@ -62,7 +61,7 @@ This lets angular know that we want to start using it.
 Now let's open up `Scripts/app/app.js` to start working on the angular part of
 our app:
 
-<% highlight javascript %>
+{% highlight javascript %}
 var model = {};
 
 var app = angular.module('app', []);
@@ -76,7 +75,7 @@ app.controller("ToDoCtrl", function ($scope, $http) {
     $scope.todo = model;
 
 });
-<% endhighlight %>
+{% endhighlight %}
 
 In the above section of code we created an angular module and gave it the name
 of 'app'. We then created a controller called "ToDoCtrl" and told it it fetch

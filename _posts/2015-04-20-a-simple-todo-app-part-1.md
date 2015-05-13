@@ -81,4 +81,5 @@ These commands will populate our database with our TodoItems table and add our i
 
 ## Wrap Up
 
-This concludes Part 1 where we created the backend for our application. In Part 2 we will create our frontend Angular application.
+This concludes Part 1 where we created the backend for our application. In [Part
+2](/2015/05/13/a-simple-todo-app-part-2/) we will create our frontend Angular application.

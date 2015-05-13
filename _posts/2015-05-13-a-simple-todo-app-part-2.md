@@ -35,7 +35,7 @@ bundles.Add(new ScriptBundle("~/bundles/app").Include(
     "~/Scripts/app/app.js"));
 {% endhighlight %}
 
-## Add Angular To Layout
+## Add Angular to Layout
 
 We still are not quite setup yet we still need to include our bundle into our
 layout file. So open up `_Layout.cshtml` which is inside of 'Views/Shared/'. Near
@@ -113,7 +113,7 @@ Now open up `Views/Home/Index.cshtml` and replace the entire contents with:
 The above html code specifies that we are using the "ToDoCtrl" and using an
 angular directive called `ng-repeat` to loop through each of the todo items.
 
-## See our work
+## See Our Work
 
 On your Visual Studio tool bar you should be able to hit the green "Continue"
 (Play) button and have your app open up in a web browser. You should see your

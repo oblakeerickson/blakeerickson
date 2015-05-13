@@ -3,20 +3,21 @@ layout: post
 title: A Simple Todo App - Part 2
 ---
 
-In [Part 1](/2015/04/20/a-simple-todo-app-part-1/) we built the backend for our todo app and now we are going to build the
-frontend in Angular. Let's get that setup.
+In [Part 1](/2015/04/20/a-simple-todo-app-part-1/) we built the backend for our
+todo app and now we are going to build the frontend in Angular. Let's get that
+setup.
 
 ## Download Angular and Create Bundle
 
 The first thing we need to is download angular and add it to our C# project. Go
-to [https://code.angularjs.org](https://code.angularjs.org) and click on 1.2.2 (yes, I'm using an older
-version). Download angular.js and put it into your Scripts
-folder. You now need to show all files and then select each of the files and
-click add to project.
+to [https://code.angularjs.org](https://code.angularjs.org) and click on 1.2.2
+(yes, I'm using an older version). Download 'angular.js' and put it into your
+Scripts folder. You now need to show all files and then select the 'angular.js'
+file and click add to project.
 
 Now open up BundleConfig.cs located inside of the `App_Start` folder. At the
-bottom of the RegisterBundles method add another bundle that we will call
-"angular".
+bottom of the `RegisterBundles` method add another bundle that we will call
+`angular`.
 
 {% highlight csharp %} 
 bundles.Add(new ScriptBundle("~/bundles/angular").Include( 
@@ -25,10 +26,10 @@ bundles.Add(new ScriptBundle("~/bundles/angular").Include(
 
 Now that we have angular installed we need a place to store the actually
 JavaScript application code. Inside of the Scripts folder create a folder called
-'app' and create a file inside of that folder called app.js.
+'app' and create a file inside of that folder called 'app.js'.
 
-Now we need to go back to our BundleConfig.js file and add another bundle we
-will call "app".
+Now we need to go back to our 'BundleConfig.js' file and add another bundle we
+will call `app`.
 
 {% highlight csharp %} 
 bundles.Add(new ScriptBundle("~/bundles/app").Include(

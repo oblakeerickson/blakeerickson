@@ -56,7 +56,7 @@ From the Package Manager Console type:
 
     Enable-Migrations
 
-This command will create a Migrations folder and a new file called Configuration.cs. Inside of this new file add a using statment for our TodoItem model:
+This command will create a Migrations folder and a new file called Configuration.cs. Inside of this new file add a using statement for our TodoItem model:
 
 {% highlight csharp %}
 using TodoApp.Models;
@@ -81,4 +81,5 @@ These commands will populate our database with our TodoItems table and add our i
 
 ## Wrap Up
 
-This concludes Part 1 where we created the backend for our application. In Part 2 we will create our frontend Angular application.
+This concludes Part 1 where we created the backend for our application. In [Part
+2](/2015/05/13/a-simple-todo-app-part-2/) we will create our frontend Angular application.

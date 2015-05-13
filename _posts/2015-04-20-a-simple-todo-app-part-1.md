@@ -56,7 +56,7 @@ From the Package Manager Console type:
 
     Enable-Migrations
 
-This command will create a Migrations folder and a new file called Configuration.cs. Inside of this new file add a using statment for our TodoItem model:
+This command will create a Migrations folder and a new file called Configuration.cs. Inside of this new file add a using statement for our TodoItem model:
 
 {% highlight csharp %}
 using TodoApp.Models;

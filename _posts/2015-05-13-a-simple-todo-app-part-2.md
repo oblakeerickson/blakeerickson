@@ -122,5 +122,6 @@ list of todo items.
 
 ## Wrap Up
 
-This concludes Part 2 where we used angular to display our todo items. In Part 3
+This concludes Part 2 where we used angular to display our todo items. In [Part
+3](/2015/05/18/a-simple-todo-app-part-3/)
 we will work on being able to create and delete todo items.

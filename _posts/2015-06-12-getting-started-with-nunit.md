@@ -4,8 +4,8 @@ title: Getting Started with NUnit
 ---
 
 NUnit is not the default testing framework when building .NET applications and
-getting it setup can be a little bit tricky. To help aleviate some of the setup
-pain this artitle will walk you though how to get NUnit added to your Solution
+getting it setup can be a little bit tricky. To help alleviate some of the setup
+pain this article will walk you though how to get NUnit added to your Solution
 and show you how to write your first test.
 
 ## Step 1: Create a New Solution
@@ -39,20 +39,19 @@ Empty Web Application"
 
 Now that we have our project setup it is time to install NUnit. There are
 probably several different ways to do this but I think the easiest way is to
-simply install the nuget package for NUnit.
+simply install the NuGet package for NUnit.
 
 1. Open up the Package Manage Console
 2. Type: `Install-Package NUnit NUnitExample.Tests` and press enter
 
 The console should have output that looks something like:
 
-{% highlight %}
+{% highlight html %}
 Installing 'NUnit 2.6.4'.
 Successfully installed 'NUnit 2.6.4'.
 Adding 'NUnit 2.6.4' to NUnitExample.
 Successfully added 'NUnit 2.6.4' to NUnitExample.Tests. 
 {% endhighlight %}
-
 
 ## Step 4: Test the Values Controller
 
@@ -71,8 +70,7 @@ NUnit.Framework;`
 3. Create a method called `ReturnsAListOfValues`
 4. Above that method create an attribute called `[Test]`
 
-
-Before we start writing our test we will need to add a referece to the
+Before we start writing our test we will need to add a reference to the
 NUnitExample project and add another using statement.
 
 1. Right-click on the NUnitExample.Tests project and select `Add -> Reference...`
@@ -86,7 +84,7 @@ Since our test is actually creating an instance of a controller we need to add a
 reference to the .NET library responsible for HTTP stuff, like controllers. Open
 up the Package Manage Console again and install the following package:
 
-{% highlight %}
+{% highlight csharp %}
 Install-Package Microsoft.AspNet.WebApi.Core --Version 5.2.2 NUnitExample.Tests
 {% endhighlight %}
 
@@ -157,12 +155,12 @@ Before we can run the test we actually need to install the NUnit Test Runner.
 5. Click Close
 
 Now to run our tests, from the top menu in Visual Studio, select `TEST -> Run ->
-All Tests`. Once the test has finished running you should see a green checkmark
+All Tests`. Once the test has finished running you should see a green check mark
 next to our test signifying that the test passed.
 
 ## Conclusion
 
 Writing the actual test is not too bad, but getting everything set up can take
-some effort. The good news is that once you have everthing setup you shouldn't
+some effort. The good news is that once you have everything setup you shouldn't
 have to do it again.
 

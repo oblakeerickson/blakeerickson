@@ -5,7 +5,7 @@ summary: >
   If you have a form in your web application chances are you are going to need to
   add a behavior to one of the input fields. This post will show you how to build
   your very own angular directive.
-categories: angular
+tags: angular
 ---
 
 If you have a form in your web application chances are you are going to need to

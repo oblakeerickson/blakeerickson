@@ -6,8 +6,9 @@ summary: >
     have more traffic than you really do. Referral spam will also tax your webserver
     which is something you definitely don't want. If you are using NGINX as your
     webserver this post will show you how to block these spammy domains.
-tags: csharp
+tags: nginx 
 ---
+
 
 Referral spam will mess up your website analytics by making it look like you
 have more traffic than you really do. Referral spam will also tax your webserver
@@ -77,9 +78,13 @@ the `server` block:
 ##
 
 if ($bad_referer) {
-    return 403;
+    return 444;
 }
 {% endhighlight %}
+
+We are using ['444'][4] instead of '403' so that the connection closes immediately
+and no information is returned to the spammer. It also will use less server
+resources.
 
 **NOTE:** The `if` statement can't be used inside of the `http` block.
 
@@ -105,12 +110,17 @@ command:
 curl -e "http://www.success-seo.com" "http://blaketv.com"
 {% endhighlight %}
 
-Which should return some html code containing:
+Which should return a message like:
 
-{% highlight html %}
-<head><title>403 Forbidden</title></head>
+{% highlight text %}
+curl: (52) Empty reply from server
 {% endhighlight %}
+
+**Update Jul 6, 2015**: Thanks to [@JF0LKINS][5], I updated this post (and my
+config) so that NGINX would  return '444' instead of '403'. 
 
 [1]: http://nginx.org/en/docs/http/ngx_http_map_module.html
 [2]: http://serverfault.com/a/646344/150695
 [3]: http://openresty.org/download/agentzh-nginx-tutorials-en.html 
+[4]: http://httpstatus.es/444
+[5]: https://twitter.com/JF0LKINS/status/617724077373927424

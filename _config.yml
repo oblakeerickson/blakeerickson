@@ -1,9 +1,9 @@
 # Site settings
-title: BlakeTV
+title: Blake Erickson
 email: o.blakeerickson@gmail.com
-description: "My coding adventures with ruby and javascript"
+description: ""
 baseurl: ""
-url: "http://blaketv.com"
+url: "http://blakeerickson.com"
 twitter_username: oblakeerickson
 github_username:  oblakeerickson
 discourse_url:    "http://discuss.blakeerickson.com/"
